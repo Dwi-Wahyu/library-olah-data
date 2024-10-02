@@ -14,12 +14,21 @@ def linear_search(arr, target):
     indices = []
     
     # Melakukan pencarian linear
-    for i in range(len(arr)):
-        if arr[i] == target:
+    for i, elem in enumerate(arr):
+        if elem == target:
             indices.append(i)
     
     # Mengembalikan list indeks (kosong jika target tidak ditemukan)
     return indices
+
+
+def is_sorted(arr):
+    """
+    Fungsi untuk memeriksa apakah list diurutkan secara ascending (menaik).
+    :param arr: List yang akan diperiksa.
+    :return: True jika list diurutkan, False jika tidak.
+    """
+    return all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1))
 
 
 def binary_search(arr, target):
@@ -35,14 +44,13 @@ def binary_search(arr, target):
     if not isinstance(arr, list):
         raise ValueError("Argumen pertama harus berupa list.")
     
-    if arr != sorted(arr):
+    if not is_sorted(arr):
         raise ValueError("List harus diurutkan secara ascending untuk pencarian biner.")
     
     # List untuk menyimpan semua indeks yang ditemukan
     indices = []
     
-    low = 0
-    high = len(arr) - 1
+    low, high = 0, len(arr) - 1
     
     # Melakukan pencarian biner
     while low <= high:
@@ -52,13 +60,13 @@ def binary_search(arr, target):
             # Jika target ditemukan, kita cari di kedua arah (kiri dan kanan)
             indices.append(mid)
             
-            # Cek ke kiri dari mid untuk kemunculan lebih lanjut
+            # Cari kemunculan lain ke kiri dari mid
             left = mid - 1
             while left >= 0 and arr[left] == target:
                 indices.append(left)
                 left -= 1
             
-            # Cek ke kanan dari mid untuk kemunculan lebih lanjut
+            # Cari kemunculan lain ke kanan dari mid
             right = mid + 1
             while right < len(arr) and arr[right] == target:
                 indices.append(right)
@@ -70,17 +78,16 @@ def binary_search(arr, target):
         else:
             high = mid - 1
     
-    # Mengembalikan list indeks (kosong jika target tidak ditemukan)
-    return sorted(indices)
+    # Mengembalikan list indeks yang sudah ditemukan (kosong jika target tidak ditemukan)
+    return indices
 
-
-# # Contoh penggunaan
-# if __name__ == "__main__":
-#     lst_random = [3, 1, 5, 7, 7, 9, 11, 3, 13, 15]
+# Contoh penggunaan
+if __name__ == "__main__":
+    lst_random = [3, 1, 5, 7, 7, 9, 11, 3, 13, 15]
     
-#     # Tes Pencarian Linear (list acak)
-#     print("Hasil Pencarian Linear (acak):", linear_search(lst_random, 3))  # Output: [3, 4]
+    # Tes Pencarian Linear (list acak)
+    print("Hasil Pencarian Linear (acak):", linear_search(lst_random, 3))  # Output: [0, 7]
     
-#     # Tes Pencarian Biner (list terurut)
-#     lst_sorted = sorted(lst_random)  # Mengurutkan list
-#     print("Hasil Pencarian Biner (terurut):", binary_search(lst_sorted, 7))  # Output: [4, 5]
+    # Tes Pencarian Biner (list terurut)
+    lst_sorted = sorted(lst_random)  # Mengurutkan list
+    print("Hasil Pencarian Biner (terurut):", binary_search(lst_sorted, 7))  # Output: [4, 5]
