@@ -1,9 +1,8 @@
 # UniqueList Module - Python List for Unique Items 
-Welcome to UniqueList, a Python list-like module designed to store only unique elements while preserving their insertion order. Say goodbye to redundant entries in your lists and hello to efficient, intuitive data handling.
+Selamat datang di UniqueList, sebuah modul Python mirip list yang dirancang untuk menyimpan elemen-elemen unik saja sambil mempertahankan urutan penyisipannya. Ucapkan selamat tinggal pada entri yang berulang dalam daftar Anda dan sambutlah pengelolaan data yang efisien dan intuitif.
 
 # Features
-No Duplicates: Automatically filters out duplicates while maintaining order.<br/>
-Intelligent Merging: Merge multiple lists while preserving uniqueness across all.<br/>
-Duplicate Detection: Easily find out if duplicates were attempted to be added.<br/>
-Compatibility: Acts like a regular Python list—supports slicing, indexing, iteration, and more.<br/>
-Customizable: Add your own duplicate resolution strategies or tweak sorting behaviors with ease.<br/>
+- unique_elements(list): Mengembalikan list hanya dengan elemen-elemen unik (tanpa duplikat).<br/>
+- sum_unique(list): Mengembalikan jumlah dari semua elemen unik dalam list.<br/>
+- unique_and_sort(list): Mengembalikan elemen unik yang sudah diurutkan secara ascending.<br/>
+- get_duplicates(list): Mengembalikan elemen-elemen yang duplikat dalam list (tidak unik).<br/>
